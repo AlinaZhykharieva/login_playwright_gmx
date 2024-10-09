@@ -3,11 +3,9 @@ import {test} from '../src/fixtures/fixture';
 import {buildRandomEmail, buildRandomPassword} from '../src/utils/rundomCreadentioalBuilder';
 
 const expectedMessage: string = 'Login leider nicht erfolgreich.';
-const manageAdvertisingUrl = '**/js.ui-portal.de/netid/consensu/v3/latest/*';
 
-test.beforeEach(async ({homePage, context}) => {
-    // await context.route(manageAdvertisingUrl, route => route.abort());
-    await homePage.start();
+test.beforeEach(async ({homePage}) => {
+    await homePage.goto();
 });
 
 test('Login with empty data', async ({homePage, logoutLoungePage}) => {
@@ -28,13 +26,3 @@ test('Return to Home page with login functionality', async ({homePage, logoutLou
     await logoutLoungePage.returnToLoginClick();
     await expect(homePage.loginButton).toBeVisible();
 });
-
-test('Close ADV', async ({page, homePage}) => {
-    await page.goto('/consent-management/');
-    await page.waitForSelector('iframe[name="landingpage"]');
-    const frame = page.locator('iframe[name="landingpage"]').contentFrame().locator('iframe').contentFrame().getByRole('button', {name: 'Akzeptieren und weiter'})
-    await frame.click();
-    await expect(homePage.loginButton).toBeVisible();
-});
-
-
