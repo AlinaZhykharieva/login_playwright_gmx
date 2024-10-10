@@ -12,9 +12,9 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.45.1-jammy
+      image: mcr.microsoft.com/playwright:v1.48.0-jammy
     steps:
-      - name: Get code
+      - name: Get code 
         uses: actions/checkout@v4
       - name: Install Node JS
         uses: actions/setup-node@v4
